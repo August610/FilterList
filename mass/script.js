@@ -18,11 +18,14 @@ function filterCosts(array) {
     return courses.filter((item) =>
         (item.prices[0] == null && item.prices[1] == null) ? true :
             item.prices[0] >= array[0] &&
-            item.prices[0] <= array[1] &&
+            (array[1] !== null ? item.prices[0] <= array[1] : true) &&
             item.prices[1] <= array[1]
     );
 }
 
-console.log(filterCosts(requiredRange1));
-console.log(filterCosts(requiredRange2));
+
+console.log(courses.sort((a, b) => a.prices[0] - b.prices[0])); // null при преобразовании считается как нуль, что в данном случае, на мой взгляд, не критично.
+
 console.log(filterCosts(requiredRange3));
+console.log(filterCosts(requiredRange2));
+console.log(filterCosts(requiredRange1));
